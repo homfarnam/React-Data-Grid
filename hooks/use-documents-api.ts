@@ -68,10 +68,12 @@ export const useDocumentsApi = ({
       }
 
       if (filters.dateFrom) {
-        params.set('dateFrom', filters.dateFrom);
+        const dateFromISO = new Date(filters.dateFrom).toISOString();
+        params.set('dateFrom', dateFromISO);
       }
       if (filters.dateTo) {
-        params.set('dateTo', filters.dateTo);
+        const dateToISO = new Date(filters.dateTo).toISOString();
+        params.set('dateTo', dateToISO);
       }
       if (filters.revisionOperator) {
         params.set('revisionOperator', filters.revisionOperator);
