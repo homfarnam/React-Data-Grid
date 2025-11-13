@@ -27,17 +27,19 @@ A modern, feature-rich document management system built with React, Next.js, and
 - **Filter Chips**: Visual display of active filters with individual removal
 - **Favourite Toggle**: Star icon to mark documents as favourites
 - **Reset Functionality**: One-click reset to default state
-- **Persistence**: Settings saved to localStorage
+- **URL Persistence**: Settings persisted in URL query parameters
   - Column visibility
   - Page size
   - Applied filters
   - Favourite selections
+  - Search query
+  - Sort state
 
 ### Bonus Features Implemented
 
 ✅ TypeScript implementation  
 ✅ Debounced search (300ms)  
-✅ LocalStorage persistence for settings  
+✅ URL persistence for shareable state  
 ✅ Responsive UI  
 ✅ Accessibility features (ARIA labels, keyboard navigation)  
 ✅ Clean, modern design with shadcn/ui components
@@ -50,7 +52,7 @@ A modern, feature-rich document management system built with React, Next.js, and
 - **UI Components**: shadcn/ui (Radix UI primitives)
 - **Icons**: Lucide React
 - **State Management**: React hooks (useState, useEffect, useMemo)
-- **Data Persistence**: localStorage
+- **State Persistence**: URL query parameters (shareable links)
 - **Mock Data**: Faker.js - Generate realistic fake data
 - **Testing**: Vitest + Testing Library
 - **Documentation**: Storybook
@@ -96,6 +98,13 @@ npm run build
 npm start
 ```
 
+or
+
+```bash
+yarn build
+yarn start
+```
+
 ## Testing
 
 The project uses [Vitest](https://vitest.dev/) for unit testing with @testing-library/react for component testing.
@@ -124,6 +133,8 @@ yarn test:coverage
 - `components/filter-chips/filter-chips.test.tsx` - Filter chips component tests (12 tests)
 
 **Total: 68 tests covering core functionality**
+
+---
 
 ## Storybook
 
@@ -171,96 +182,11 @@ yarn format:check
 4. Alias imports (`@/...`)
 5. Relative imports (`./...`)
 
-## Key Design Decisions
-
-### Architecture
-
-- **Component Composition**: Split functionality into focused, reusable components
-- **Modular Structure**: Data grid broken into sub-components for better maintainability
-- **State Management**: Centralized state in `DataGridContainer` with props drilling for simplicity
-- **Data Flow**: Unidirectional data flow with clear parent-child relationships
-- **Business Logic Separation**: Filtering and data transformation extracted to pure utility functions
-
-### Performance
-
-- **Memoization**: Used `useMemo` for expensive filtering/sorting operations
-- **Debouncing**: 300ms debounce on search to reduce unnecessary re-renders
-- **Client-side Processing**: All operations happen client-side for instant feedback
-- **Pure Functions**: All data transformations use pure functions for predictable performance
-
-### User Experience
-
-- **Persistence**: Settings saved to localStorage for seamless return visits
-- **Visual Feedback**: Active filters shown as removable chips
-- **Responsive Design**: Mobile-first approach with flexible layouts
-- **Accessibility**: Proper ARIA labels, keyboard navigation, semantic HTML
-
-### Trade-offs
-
-- **Client-side vs Server-side**: Chose client-side for simplicity and instant feedback. For production with larger datasets, server-side pagination/filtering would be better.
-- **State Management**: Used React hooks instead of Redux/Zustand for reduced complexity. For larger apps, a state management library would be beneficial.
-- **Mock Data**: Using Faker.js to generate realistic synthetic data with reproducible results. In production, this would come from an API.
-
-## Project Structure
-
-```
-.
-├── app/                      # Next.js app directory
-│   ├── api/                 # API routes
-│   └── page.tsx             # Main page component
-├── components/              # React components
-│   ├── ui/                  # Base UI components (shadcn/ui)
-│   ├── data-grid/          # Data grid components
-│   ├── filter-chips/       # Filter chips component
-│   ├── search-bar/         # Search bar component
-│   └── ...
-├── hooks/                   # Custom React hooks
-├── lib/                     # Utility functions and types
-│   ├── utils.ts            # Utility functions
-│   ├── data-grid-utils.ts  # Data grid helpers
-│   ├── types.ts            # TypeScript types
-│   └── mock-data.ts        # Mock data generation
-├── stories/                # Storybook stories
-├── .prettierrc             # Prettier configuration
-├── .eslintrc.json          # ESLint configuration
-├── vitest.config.ts        # Vitest configuration
-└── tsconfig.json           # TypeScript configuration
-```
+---
 
 ## Docker Support
 
 The project includes Docker support for both development and production deployment.
-
-### Docker Compose (Development)
-
-Create a `docker-compose.dev.yml` file in the project root with the following content:
-
-```yaml
-version: '3.8'
-
-services:
-  app:
-    build:
-      context: .
-      target: builder
-    ports:
-      - '4000:4000'
-    volumes:
-      - .:/app
-      - /app/node_modules
-      - /app/.next
-    environment:
-      - NODE_ENV=development
-      - PORT=4000
-```
-
-Run the following command to start the application in development mode:
-
-```bash
-docker-compose -f docker-compose.dev.yml up
-```
-
-The application will be available at [http://localhost:4000](http://localhost:4000)
 
 ### Production Deployment
 
@@ -345,3 +271,18 @@ docker-compose down
 # Rebuild and start
 docker-compose up -d --build
 ```
+
+---
+
+## Future Improvements
+
+### Technical Improvements
+
+- **Testing**:
+  - Add more tests
+
+### UI/UX Enhancements
+
+- **Theme Support**:
+  - Add light/dark mode
+  - Support system color scheme preferences
