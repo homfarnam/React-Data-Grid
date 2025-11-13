@@ -3,7 +3,7 @@
 import { DataGrid } from '@/components/data-grid/component';
 import { DataGridControls } from '@/components/data-grid/controls';
 import { FilterChips } from '@/components/filter-chips';
-import Loading from '@/components/shared/loading/loading';
+import { Loading } from '@/components/shared/loading';
 import { useDataGridState } from '@/hooks/use-data-grid-state';
 
 export const DataGridContainer = () => {
@@ -73,4 +73,3 @@ export const DataGridContainer = () => {
     </div>
   );
 };
-
