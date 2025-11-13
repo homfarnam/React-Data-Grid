@@ -47,10 +47,8 @@ export default [
       },
     },
     rules: {
-      // Console & debugging
       'no-console': ['warn', { allow: ['warn', 'error', 'info'] }],
 
-      // TypeScript
       '@typescript-eslint/no-unused-vars': [
         'warn',
         { argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
