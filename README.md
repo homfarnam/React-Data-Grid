@@ -2,6 +2,10 @@
 
 A modern, feature-rich document management system built with React, Next.js, and TypeScript. This application displays 1,000 documents in an interactive data grid with advanced filtering, sorting, search, and column configuration capabilities.
 
+## 🚀 Live Demo
+
+**Try it live:** [https://react-data-grid-wheat.vercel.app/](https://react-data-grid-wheat.vercel.app/)
+
 ## Features
 
 ### Core Functionality
