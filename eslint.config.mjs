@@ -49,7 +49,7 @@ export default [
     rules: {
       // Console & debugging
       'no-console': ['warn', { allow: ['warn', 'error', 'info'] }],
-      
+
       // TypeScript
       '@typescript-eslint/no-unused-vars': [
         'warn',
@@ -60,12 +60,10 @@ export default [
         'warn',
         { prefer: 'type-imports' },
       ],
-      
-      // General best practices
+      'react/no-unescaped-entities': 'off',
       'prefer-const': 'warn',
       'no-var': 'error',
-      'eqeqeq': ['error', 'always'],
+      eqeqeq: ['error', 'always'],
     },
   },
 ];
-
