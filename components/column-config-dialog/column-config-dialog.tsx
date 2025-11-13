@@ -15,7 +15,6 @@ import {
 import { Label } from '@/components/ui/label';
 import type { ColumnConfigDialogProps } from './types';
 
-// Client detection for hydration safety
 const subscribe = () => () => {};
 const getSnapshot = () => true;
 const getServerSnapshot = () => false;
@@ -31,16 +30,22 @@ export const ColumnConfigDialog = ({
   );
   const [open, setOpen] = useState(false);
 
+  const visibleCount = isClient
+    ? columns.filter((col) => col.visible).length
+    : columns.length;
+
   const handleToggleColumn = (key: string) => {
+    const column = columns.find((col) => col.key === key);
+
+    if (column?.visible && visibleCount === 1) {
+      return;
+    }
+
     const updatedColumns = columns.map((col) =>
       col.key === key ? { ...col, visible: !col.visible } : col
     );
     onColumnsChange(updatedColumns);
   };
-
-  const visibleCount = isClient
-    ? columns.filter((col) => col.visible).length
-    : columns.length;
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -59,21 +64,25 @@ export const ColumnConfigDialog = ({
           </DialogDescription>
         </DialogHeader>
         <div className="space-y-4 py-4">
-          {columns.map((column) => (
-            <div key={column.key} className="flex items-center space-x-3">
-              <Checkbox
-                id={column.key}
-                checked={column.visible}
-                onCheckedChange={() => handleToggleColumn(column.key)}
-              />
-              <Label
-                htmlFor={column.key}
-                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer"
-              >
-                {column.label}
-              </Label>
-            </div>
-          ))}
+          {columns.map((column) => {
+            const isLastVisible = column.visible && visibleCount === 1;
+            return (
+              <div key={column.key} className="flex items-center space-x-3">
+                <Checkbox
+                  id={column.key}
+                  checked={column.visible}
+                  disabled={isLastVisible}
+                  onCheckedChange={() => handleToggleColumn(column.key)}
+                />
+                <Label
+                  htmlFor={column.key}
+                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer"
+                >
+                  {column.label}
+                </Label>
+              </div>
+            );
+          })}
         </div>
         <div className="flex justify-end">
           <Button onClick={() => setOpen(false)}>Done</Button>
