@@ -38,7 +38,6 @@ export const ColumnConfigDialog = ({
     onColumnsChange(updatedColumns);
   };
 
-  // Show default count on server, actual count on client
   const visibleCount = isClient
     ? columns.filter((col) => col.visible).length
     : columns.length;
