@@ -1,2 +1,0 @@
-export { DataGridContainer } from './container';
-

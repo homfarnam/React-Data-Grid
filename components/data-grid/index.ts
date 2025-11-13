@@ -1,6 +1,6 @@
-export { DataGrid } from './component';
-export { DataGridContainer } from './container';
-export { DataGridControls } from './controls';
+export { DataGrid } from './grid-table';
+export { DataGridContainer } from './grid-view';
+export { DataGridControls } from './toolbar';
 
 export { EmptyDoc } from './empty-doc';
 export { PaginationControls } from './pagination-controls';

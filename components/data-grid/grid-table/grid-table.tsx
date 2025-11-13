@@ -29,7 +29,6 @@ export const DataGrid = ({
   totalPages,
   onPageSizeChange,
 }: DataGridProps) => {
-  // Track if we're on the client to prevent hydration mismatch
   const isClient = useSyncExternalStore(
     subscribe,
     getSnapshot,

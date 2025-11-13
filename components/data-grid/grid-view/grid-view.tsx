@@ -1,7 +1,7 @@
 'use client';
 
-import { DataGrid } from '@/components/data-grid/component';
-import { DataGridControls } from '@/components/data-grid/controls';
+import { DataGrid } from '@/components/data-grid/grid-table';
+import { DataGridControls } from '@/components/data-grid/toolbar';
 import { FilterChips } from '@/components/filter-chips';
 import { Loading } from '@/components/shared/loading';
 import { useDataGridState } from '@/hooks/use-data-grid-state';
@@ -17,11 +17,9 @@ export const DataGridContainer = () => {
     allOwners,
     loading,
     error,
-
     processedDocuments,
     totalDocuments,
     totalPages,
-
     handleToggleFavourite,
     handleReset,
     handleRemoveFilter,
