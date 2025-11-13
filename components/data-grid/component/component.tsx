@@ -8,7 +8,7 @@ import {
   useReactTable,
 } from '@tanstack/react-table';
 import { createColumns } from '@/lib/columns';
-import { EmptyState } from '../empty-state';
+import { EmptyDoc } from '../empty-doc';
 import { PaginationControls } from '../pagination-controls';
 import { TableHeader } from '../table-header';
 import type { DataGridProps } from '../types';
@@ -69,7 +69,7 @@ export const DataGrid = ({
             <TableHeader table={table} />
             <tbody>
               {documents.length === 0 ? (
-                <EmptyState columnCount={visibleColumnCount} />
+                <EmptyDoc columnCount={visibleColumnCount} />
               ) : (
                 documents.map((doc, index) => {
                   const row = table.getRowModel().rows[index];
