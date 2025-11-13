@@ -46,8 +46,6 @@ export async function GET(request: NextRequest) {
 
     const parsedParam = querySchema.safeParse(rawParams);
 
-    console.log({ parsedParam });
-
     if (!parsedParam.success) {
       const flatError = z.flattenError(parsedParam.error);
 
