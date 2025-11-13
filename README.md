@@ -283,7 +283,8 @@ docker-compose up -d --build
 ### Technical Improvements
 
 - **Testing**:
-  - Add more tests
+  - Add more unit tests to cover all the functions and components
+  - Implement end to end and integration tests
 
 ### UI/UX Enhancements
 
