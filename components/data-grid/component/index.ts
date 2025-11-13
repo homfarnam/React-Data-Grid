@@ -1,0 +1,2 @@
+export { DataGrid } from './component';
+
