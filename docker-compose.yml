@@ -1,0 +1,21 @@
+name: react-data-grid
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: document-management-system
+    ports:
+      - "4000:4000"
+    environment:
+      - PORT=4000
+      - HOSTNAME=0.0.0.0
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:4000', (r) => {process.exit(r.statusCode === 200 ? 0 : 1)})"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+ 
